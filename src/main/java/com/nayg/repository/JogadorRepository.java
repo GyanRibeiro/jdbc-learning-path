@@ -23,4 +23,18 @@ public class JogadorRepository {
             System.out.println(e.getMessage());;
         }
     }
+
+    public static void deleteJogador(int id) {
+        String sql = "DELETE FROM public.jogadores WHERE (id = '%d');".formatted(id);
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             Statement stmt = conn.createStatement()){
+            int rowsAffected = stmt.executeUpdate(sql);
+            log.info("Deleted jogador '{}' in the database, rows affected: '{}'", id, rowsAffected);
+        }
+        catch (SQLException e) {
+            log.error("Error delete jogador '{}'", id, e);
+            System.out.println(e.getMessage());;
+        }
+    }
 }

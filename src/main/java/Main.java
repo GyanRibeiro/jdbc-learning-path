@@ -13,6 +13,7 @@ public class Main {
                                 .posicao("Goleiro")
                                         .build();
 
-        JogadorService.save(jg1);
+//        JogadorService.save(jg1);
+        JogadorService.delete(5);
     }
 }
