@@ -9,11 +9,19 @@ public class Main {
     public static void main(String[] args) {
         Jogador jg1 = Jogador.builder()
                 .nome("Rossi")
-                        .idade(31)
-                                .posicao("Goleiro")
-                                        .build();
+                .idade(31)
+                .posicao("Goleiro")
+                .build();
+
+        Jogador jgUpdate = Jogador.builder()
+                .id(4)
+                .nome(null)
+                .idade(null)
+                .posicao("Centroavante")
+                .build();
 
 //        JogadorService.save(jg1);
-        JogadorService.delete(5);
+//        JogadorService.delete(5);
+        JogadorService.update(jgUpdate);
     }
 }

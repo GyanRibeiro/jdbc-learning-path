@@ -11,7 +11,7 @@ import java.sql.Statement;
 @Log4j2
 public class JogadorRepository {
     public static void saveJogador(Jogador jogador) {
-        String sql = "INSERT INTO public.jogadores (nome, idade, posição) VALUES ('%s', '%d', '%s');".formatted(jogador.getNome(), jogador.getIdade(), jogador.getPosicao());
+        String sql = "INSERT INTO public.jogadores (nome, idade, posicao) VALUES ('%s', '%d', '%s');".formatted(jogador.getNome(), jogador.getIdade(), jogador.getPosicao());
 
         try (Connection conn = ConnectionFactory.getConnection();
             Statement stmt = conn.createStatement()){
@@ -34,6 +34,20 @@ public class JogadorRepository {
         }
         catch (SQLException e) {
             log.error("Error delete jogador '{}'", id, e);
+            System.out.println(e.getMessage());;
+        }
+    }
+
+    public static void updateJogador(Jogador jogador) {
+        String sql = "UPDATE public.jogadores SET posicao = '%s' WHERE id = '%d';".formatted(jogador.getPosicao(), jogador.getId());
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             Statement stmt = conn.createStatement()){
+            int rowsAffected = stmt.executeUpdate(sql);
+            log.info("Update jogador '{}' in the database, rows affected: '{}'", jogador.getId(), rowsAffected);
+        }
+        catch (SQLException e) {
+            log.error("Error update jogador '{}'", jogador.getId(), e);
             System.out.println(e.getMessage());;
         }
     }

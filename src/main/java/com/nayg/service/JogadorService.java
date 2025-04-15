@@ -9,10 +9,19 @@ public class JogadorService {
     }
 
     public static void delete(Integer id) {
-        if (id < 0) {
-            throw new IllegalArgumentException("Invalid id: " + id);
-        }
+        requireValidId(id);
 
         JogadorRepository.deleteJogador(id);
+    }
+
+    public static void update(Jogador jogador) {
+        requireValidId(jogador.getId());
+        JogadorRepository.updateJogador(jogador);
+    }
+
+    private static void requireValidId(Integer id) {
+        if (id == null || id < 0) {
+            throw new IllegalArgumentException("Invalid id: " + id);
+        }
     }
 }
