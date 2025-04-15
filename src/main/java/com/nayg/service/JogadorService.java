@@ -3,6 +3,8 @@ package com.nayg.service;
 import com.nayg.dominio.Jogador;
 import com.nayg.repository.JogadorRepository;
 
+import java.util.List;
+
 public class JogadorService {
     public static void save(Jogador jogador) {
         JogadorRepository.saveJogador(jogador);
@@ -17,6 +19,10 @@ public class JogadorService {
     public static void update(Jogador jogador) {
         requireValidId(jogador.getId());
         JogadorRepository.updateJogador(jogador);
+    }
+
+    public static List <Jogador> findAll() {
+        return JogadorRepository.findAll();
     }
 
     private static void requireValidId(Integer id) {
