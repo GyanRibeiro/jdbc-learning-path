@@ -1,6 +1,7 @@
 import com.nayg.conn.ConnectionFactory;
 import com.nayg.dominio.Jogador;
-import com.nayg.repository.ProducerRepository;
+import com.nayg.repository.JogadorRepository;
+import com.nayg.service.JogadorService;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -12,6 +13,6 @@ public class Main {
                                 .posicao("Goleiro")
                                         .build();
 
-        ProducerRepository.saveProducer(jg1);
+        JogadorService.save(jg1);
     }
 }

@@ -9,16 +9,17 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 @Log4j2
-public class ProducerRepository {
-    public static void saveProducer(Jogador jogador) {
+public class JogadorRepository {
+    public static void saveJogador(Jogador jogador) {
         String sql = "INSERT INTO public.jogadores (nome, idade, posição) VALUES ('%s', '%d', '%s');".formatted(jogador.getNome(), jogador.getIdade(), jogador.getPosicao());
 
         try (Connection conn = ConnectionFactory.getConnection();
             Statement stmt = conn.createStatement()){
             int rowsAffected = stmt.executeUpdate(sql);
-            log.info("Database inserted: {}", rowsAffected);
+            log.info("Inserted jogador '{}' in the database, rows affected: '{}'", jogador.getNome(), rowsAffected);
         }
         catch (SQLException e) {
+            log.error("Error inserting jogador '{}'", jogador.getNome(), e);
             System.out.println(e.getMessage());;
         }
     }
