@@ -27,3 +27,20 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+# Build
+target/
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Arquivos temporários
+*.log
+*.tmp
+
+# Banco de dados (se aplicável)
+*.db
+*.sqlite
